@@ -40,7 +40,7 @@ jobs:
           cd unit-testing
           git pull
           go build
-          nohup go run main.go > /home/ubuntu/unit-testing/log.out 2>&1 & disown 
+          nohup go run main.go > /unit-testing/log.out 2>&1 & disown 
           exit
         EOF
 
