@@ -37,6 +37,5 @@ jobs:
             cd unit-testing
             git pull
             go build
-            go run main.go > unit-testing/log.out 2>&1 & disown 
-            exit
+            nohup go run main.go > unit-testing/log.out 2>&1 & disown 
           EOF
