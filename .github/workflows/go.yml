@@ -36,7 +36,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i "test.pem" ubuntu@ec2-13-60-168-15.eu-north-1.compute.amazonaws.com << EOF
             cd unit-testing
             git pull
-            git build
-            nohup go run main.go > /home/ubuntu/unit-testing/log.out 2>&1 & disown 
+            go build
+            go run main.go > unit-testing/log.out 2>&1 & disown 
             exit
           EOF
