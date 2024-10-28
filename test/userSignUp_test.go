@@ -56,7 +56,7 @@ func TestSignUp(t *testing.T) {
 			name:           "Bad Request - Invalid JSON",
 			input:          model.UserModel{},
 			expectedStatus: http.StatusBadRequest,
-			expectedBody:   `{"error":"Key: 'UserModel.Email' Error:Field validation for 'Email' failed on the 'required' tag"}`, // adjust based on actual validation error
+			expectedBody:   `{"error":"Key: 'UserModel.Email' Error:Field validation for 'Email' failed on the 'required' tag"}`, 
 		},
 	}
 
