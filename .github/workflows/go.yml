@@ -36,6 +36,6 @@ deploy:
         ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i "test.pem" ubuntu@ec2-13-60-168-15.eu-north-1.compute.amazonaws.com << EOF
           cd ~/unit-testing || exit 1  # Navigate to the correct directory and exit if it fails
           git pull
-          go build || exit 1  # Exit if build fails
+          go build || exit 1  
           nohup go run main.go > log.out 2>&1 & disown 
         EOF
