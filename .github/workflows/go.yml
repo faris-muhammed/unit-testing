@@ -37,6 +37,6 @@ jobs:
           cd unit-testing
           git pull
           go build
-          nohup go run main.go > ubuntu/unit-testing/log.out 2>&1 & disown 
+          nohup go run main.go > ubuntu/unit-testing/log.out 2>&1 & 
           exit
         EOF
