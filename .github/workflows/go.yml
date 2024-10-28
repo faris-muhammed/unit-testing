@@ -23,19 +23,19 @@ jobs:
       - name: Test
         run: go test -v ./...
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to EC2
-        env:
-          EC2_KEY: ${{ secrets.EC2_PEM }}
-        run: |
-          echo "${EC2_KEY}" > "test.pem"
-          chmod 400 test.pem
-          ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i "test.pem" ubuntu@ec2-13-60-168-15.eu-north-1.compute.amazonaws.com << EOF
-            cd unit-testing
-            git pull
-            go build
-            nohup go run main.go > unit-testing/log.out 2>&1 & disown 
-          EOF
+deploy:
+  runs-on: ubuntu-latest
+  needs: build
+  steps:
+    - name: Deploy to EC2
+      env:
+        EC2_KEY: ${{ secrets.EC2_PEM }}
+      run: |
+        echo "${EC2_KEY}" > "test.pem"
+        chmod 400 test.pem
+        ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i "test.pem" ubuntu@ec2-13-60-168-15.eu-north-1.compute.amazonaws.com << EOF
+          cd ~/unit-testing || exit 1  # Navigate to the correct directory and exit if it fails
+          git pull
+          go build || exit 1  # Exit if build fails
+          nohup go run main.go > log.out 2>&1 & disown 
+        EOF
