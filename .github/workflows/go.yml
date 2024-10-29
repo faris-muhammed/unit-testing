@@ -42,7 +42,7 @@ jobs:
           pkill -f main.go || true
           git pull
           go build
-          nohup ./main.go
+          nohup ./main.go > app.log 2>&1 &
           exit
         EOF
 
