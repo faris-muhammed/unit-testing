@@ -39,10 +39,10 @@ jobs:
         ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i "test.pem" ubuntu@ec2-13-60-168-15.eu-north-1.compute.amazonaws.com << EOF
           sudo -i
           cd unit-testing
-          kill -9 $(lsof -t -i :8080)
+          pkill -f main.go || true
           git pull
           go build
-          nohup go run main.go
+          nohup ./main.go
           exit
         EOF
 
