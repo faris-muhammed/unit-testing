@@ -23,7 +23,7 @@ func Login(c *gin.Context) {
 	// Check if user exists
 	if err := initializer.DB.Where("email = ?", user.Email).First(&foundUser).Error; err != nil {
 		fmt.Println("username", err)
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid email or password "})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid email or password"})
 		return
 	}
 
