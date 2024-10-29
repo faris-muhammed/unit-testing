@@ -42,7 +42,7 @@ jobs:
           kill -9 $(lsof -t -i :8080)
           git pull
           go build
-          nohup go run main.go > unit-testing/log.out 2>&1 & disown 
+          nohup go run main.go
           exit
         EOF
 
